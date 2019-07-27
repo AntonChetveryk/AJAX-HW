@@ -38,7 +38,7 @@ function deleteUsers(userId) {
 		method: 'DELETE'
 	}).then(() => {
 		return users = users.filter(function (user) {
-			return users.id !== userId;
+			return user.id !== userId;
 		})
 	}).catch(err => {
 		console.log('error');
@@ -54,7 +54,7 @@ function renderUsers() {
 		const btn = document.createElement('button');
 		btn.innerText = 'delete';
 		btn.addEventListener('click', () => {
-			deleteUsers(users.id).then(() => {
+			deleteUsers(user.id).then(() => {
 				div.remove();
 				btn.remove();
 			})
@@ -69,6 +69,3 @@ getUsers().then(data => {
 	users = data.data;
 	renderUsers()
 });
-
-
-

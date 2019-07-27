@@ -1,0 +1,26 @@
+.span{
+	display: block;
+	margin: auto;
+	text-align: center;
+}
+input{
+	margin: auto;
+	display: block;
+}
+#create{
+	margin: auto;
+	display: block;
+	margin-top: 20px;
+}
+
+.card{
+	text-align: center;
+	width: 40%;
+	margin: auto;
+	background: aqua;
+	color: brown;
+}
+.btn{
+	display: block;
+	margin: auto;
+}

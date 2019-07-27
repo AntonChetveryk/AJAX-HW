@@ -7,8 +7,8 @@ const container = document.querySelector('.container');
 
 btnCreate.addEventListener('click', () => {
 	const user = {
-		name: nameEl.value,
-		age: ageEl.value
+		name: nameEl.value || 'name',
+		age: ageEl.value || 'age'
 	};
 	console.log(user);
 	fetch(API + 'users', {
@@ -18,8 +18,11 @@ btnCreate.addEventListener('click', () => {
 		return res.json()
 	}).then((id) => {
 		user.id = id;
-		users.push(user);
-		renderUsers();
+		if (name !== undefined) {
+			users.push(user);
+			renderUsers();
+		}
+
 	}).catch((error) => {
 		console.log(error)
 	});
@@ -32,6 +35,7 @@ function getUsers() {
 		console.log('error');
 	})
 }
+
 function deleteUsers(userId) {
 	console.log(userId);
 	return fetch(API + 'users/' + userId, {
@@ -49,10 +53,11 @@ function renderUsers() {
 	container.innerHTML = '';
 	users.forEach((user) => {
 		const div = document.createElement('div');
-		div.style.marginTop = '50px';
-		div.innerHTML = `<h4>${user.name}</h4><h5>${user.age}</h5>`
+		div.className = 'card';
+		div.innerHTML = `<h4>${user.name}</h4><h5>${user.age}</h5>`;
 		const btn = document.createElement('button');
 		btn.innerText = 'delete';
+		btn.className = 'btn';
 		btn.addEventListener('click', () => {
 			deleteUsers(user.id).then(() => {
 				div.remove();

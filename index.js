@@ -13,6 +13,9 @@ btnCreate.addEventListener('click', () => {
 	console.log(user);
 	fetch(API + 'users', {
 		method: 'POST',
+		headers: {
+        'Content-Type': 'application/json'
+      },
 		body: JSON.stringify(user)
 	}).then((res) => {
 		return res.json()

@@ -7,8 +7,8 @@ const container = document.querySelector('.container');
 
 btnCreate.addEventListener('click', () => {
 	const user = {
-		name: nameEl.value || 'name',
-		age: ageEl.value || 'age'
+		name: nameEl.value,
+		age: ageEl.value
 	};
 	console.log(user);
 	fetch(API + 'users', {
@@ -21,7 +21,7 @@ btnCreate.addEventListener('click', () => {
 		return res.json()
 	}).then((id) => {
 		user.id = id;
-		if (name !== undefined) {
+		if (user.name !== '' && user.age !== '') {
 			users.push(user);
 			renderUsers();
 		}
